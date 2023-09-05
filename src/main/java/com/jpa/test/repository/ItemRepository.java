@@ -34,4 +34,10 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     // 특정 엔진에서만 쓸 수 있는 쿼리문을 작성해놓고 nativeQuery옵션을 true로 주면된다.
     @Query(value = "select * from item where i.itemDesc like %:itemDesc% order by i.price desc", nativeQuery = true)
     List<Item> findByItemDescByNative(@Param("itemDesc") String itemDesc);
+
+    // JPQL을 이용해 상품명(itemName)에 내가 적은 키워드가 포함된 경우 재고(itemCount) 역순(desc)으로 정렬하는 구문 작성
+    // 테스트 코드에서는 상품명에 "상품"이 포함된 케이스를 역순으로 처리해 작성, 통과하는 테스트까지 확인해보기
+    @Query("SELECT i FROM Item i WHERE i.itemName LIKE %:itemName% ORDER BY i.itemCount DESC")
+    List<Item> findByItemNameDesc(@Param("itemName") String itemName); // findByItemNameOrderByItemCountDesc 명칭이 너무 길어 변경
+
 }
