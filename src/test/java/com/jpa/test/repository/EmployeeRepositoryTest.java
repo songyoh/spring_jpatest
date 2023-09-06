@@ -56,8 +56,8 @@ public class EmployeeRepositoryTest {
 
     @Test
     public void testFindOne() {
-        //at com.jpa.test.entity.Department$HibernateProxy$IhaNQkCF.toString(Unknown Source) @ToString 순환참조문제(서로가 서로를 계속 반복해서 참조하는 문제 발생)
-        // Employee, Department 엔터티 @Tostring에 (exclude = {"department"}),(exclude = {"employee"}) 설정 후 test코드를 돌리니 통과되었다.
+        // at com.jpa.test.entity.Department$HibernateProxy$IhaNQkCF.toString(Unknown Source) @ToString 순환참조문제(서로가 서로를 계속 반복해서 참조하는 문제 발생)
+        // Employee, Department 엔터티 @Tostring에 (exclude = {"department"}),(exclude = {"employees"}) 설정 후 test코드를 돌리니 통과되었다.
         // given
         Long id = 2L;
         // when
